@@ -64,7 +64,7 @@ function startTimer() {
     timerInterval = setInterval(() => {
         if (timer > 0) {
             timer--;
-            timerDisplay.textContent = `Time Left: ${timer}s`;
+            timerDisplay.innerText = `Time Left: ${timer}s`;
         }
         else {
             endGame();
@@ -78,7 +78,7 @@ function trackTyping(){
     if (!startTime) {
         // Record start time on first input
         startTime = new Date();
-        console.log("time set:", startTime); 
+        // console.log("time set:", startTime); 
         startTimer();
     }
 
@@ -157,6 +157,9 @@ function endGame(){
     
     // Disable the input field after the game ends
     inputField.style.display = 'none';
+    
+    // Calculate the final WPM
+    const wpm = calculateWPM();
     
     // Calculate the final accuracy
     const accuracy = Math.floor((correctCharacters / totalCharacters) * 100);
